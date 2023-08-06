@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'welcome' %}
+<div id="content" class="p-4 p-md-5 pt-5">
+    <h2  style="text-align:center;" class="mb-4">مرحباً بكم في نظام متابعة أجهزة الموظفين</h2>
+    <br>
+    <h2  style="text-align:center;" class="mb-4">
+ <img src="{% static 'img/agr.png' %}">
+    </h2>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6" style="margin-top: 15px">
+            <div class="card border-primary">
+              <div class="card-body bg-primary text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-random fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_pa}}</h1>
+                    <h4>عدد الادارات العامة</h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-primary">
+                  
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-secondary">
+              <div class="card-body bg-secondary text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-user-graduate fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_emp}}</h1>
+                    <h4>عدد الموظفين</h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-secondary">
+                
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-success">
+              <div class="card-body bg-success text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-user-tie fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_device}}</h1>
+                    <h4>عددالاجهزة</h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-success">
+               
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-danger">
+              <div class="card-body bg-danger text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-book fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_rate1}}</h1>
+                    <h4>عدد الاجهزة السيئة</h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-danger">
+                
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-warning">
+              <div class="card-body bg-warning text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-university fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_rate3}}</h1>
+                    <h4>عدد الاجهزة المتوسطة</h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-warning">
+                 
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-top: 20px">
+            <div class="card border-info">
+              <div class="card-body bg-info text-white">
+                <div class="row">
+                  <div class="col-3">
+                    <i class="fa fa-suitcase fa-5x"></i>
+                  </div>
+                  <div class="col-9 text-right">
+                    <h1>{{total_rate5}}</h1>
+                    <h4>عدد الاجهزة الممتازة </h4>
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">
+                <div class="card-footer bg-light text-info">
+                 
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    
+
+    
+
+    
+{% endblock 'welcome' %}
+
+{% block 'js' %}
+
+
+<script>
+    // Function to animate the counting effect
+    function animateCount(target, duration) {
+        $({ countNum: 0 }).animate(
+            {
+                countNum: target
+            },
+            {
+                duration: duration,
+                easing: 'linear',
+                step: function() {
+                    // Update the displayed number during the animation
+                    $('#count').text(Math.floor(this.countNum));
+                },
+                complete: function() {
+                    // Set the final value after the animation is complete
+                    $('#count').text(target);
+                }
+            }
+        );
+    }
+
+    // Call the function when the page is ready
+    $(document).ready(function() {
+        var targetNumber = parseInt('{{ total_rate5 }}'); // Get the total_rate5 from Django context
+        var animationDuration = 2000; // Set the animation duration in milliseconds (e.g., 2000ms = 2 seconds)
+
+        // Start the counting animation
+        animateCount(targetNumber, animationDuration);
+    });
+</script>
+
+{% endblock 'js' %}

@@ -1,0 +1,382 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block 'style' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        body {
+            font-family: 'Cairo';font-size: 22px;
+            background-color: #f2f2f2;
+            direction: rtl;
+            margin: 0;
+        }
+        .header {
+            background-color: #23828e;
+            padding: 5px;
+            height: 50%;
+            width: 58.2%;
+            align-content: center;
+            margin: auto;
+            color: #fff;
+            text-align: center;
+        }
+
+        .header {
+  text-align: center;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+}
+.header img {
+  display: block;
+  margin: 0 auto;
+}
+
+.header span {
+  display: block;
+}
+
+.header .english {
+  direction: ltr ;
+}
+
+
+
+        .menu {
+            background-color: #ddd;
+            padding: 20px;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .menu li {
+            margin-bottom: 10px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu svg {
+            margin-right: 5px;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            align-items: ri;
+            margin-bottom: 10px;
+        }
+
+        .form-field label {
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="date"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .form-field input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-field input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: right;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-field.right {
+            text-align: right;
+            margin-right: auto;
+            margin-left: 10px;
+        }
+
+        .form-field.left {
+            text-align: right;
+            margin-right: 10px;
+            margin-left: auto;
+        }
+
+
+
+
+
+.container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .form-field {
+        width: 45%; /* Adjust the width as needed */
+    }
+ 
+
+
+        /* Adjustments for barcode */
+        #barcodeContainer svg {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* List Format */
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+   
+
+
+
+
+.container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .form-field {
+        width: 45%; /* Adjust the width as needed */
+    }
+ 
+
+
+        /* Adjustments for barcode */
+        #barcodeContainer svg {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* List Format */
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+    </style>
+    {% endblock 'style' %}
+</head>
+{% block 'content' %}
+<body>
+    <div class="header">
+        <img src="{% static 'img/agr.png' %}" width="180" height="100">
+        <p>
+          <span>دولة فلسطين</span> <span class="english">State of Palestine</span>
+          <span>وزارة الــــــــــــــــزراعة</span> <span class="english">Ministry OF Agriculture</span>
+          <span>وحدة الحاسوب و تكنولوجيا المعلومات</span> <span class="english">Computer & Information Technology Unit</span>
+        </p>
+      </div>
+    
+
+   
+
+    <div class="container">
+        <h2>بيانات الموظف:</h2>
+        <form method="POST" action="process.php">
+            <div class="form-section">
+                <div class="form-field row-1">
+                    <label for="employeeName">اسم الموظف</label>
+                    <input type="text" name="employeeName" id="employeeName" value="{{user.name}}" readonly required>
+                </div>
+                <div class="form-field row-2">
+                    <label for="employeeID">الرقم الوظيفي</label>
+                    <input type="text" name="employeeID" id="employeeID" value="{{user.empnumber}}" readonly required>
+                </div>
+                <div class="form-field row-3">
+                    <label for="jobTitle">رقم الهاتف</label>
+                    <input type="text" name="jobTitle" id="jobTitle" value="{{user.phone}}" readonly required>
+                </div>
+                <div class="form-field row-1">
+                    <label for="generalManagerate">الادارة العامة</label>
+                    <input type="text" name="generalManagerate" id="generalManagerate" value="{{user.PublicAd.name}}" readonly required>
+                </div>
+                <div class="form-field row-2">
+                    <label for="workLocation">مكان العمل</label>
+                    <input type="text" name="workLocation" id="workLocation" value="{{user.location}}" readonly required>
+                </div>
+               
+                <div class="form-field row-1">
+                    <label for="circle">الدائرة</label>
+                    <input type="text" name="circle" id="circle" value="{{user.circle}}" readonly required>
+                </div>
+    
+                <div class="form-field row-3">
+                    <label for="department">القسم</label>
+                    <input type="text" name="department" id="department" value="{{user.department}}" readonly required>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+            <div class="form-field">
+                <!-- زر الحفظ هنا -->
+             
+            </div>
+
+        </form>
+    </div>
+    {% for device in device %}
+    <div class="container">
+        <h2>مواصفات الجهاز</h2>
+        <form method="POST" action="process.php">
+           
+            <div class="form-section">
+                <div class="form-field row-1">
+                    <label for="deviceType">النوع</label>
+                    <input type="text" name="deviceType" id="deviceType" readonly value="{{ device.TypeDevice.name }}" required>
+                </div>
+                <div class="form-field row-1">
+                    <label for="cpu">المعالج</label>
+                    <input type="text" name="cpu" id="cpu" readonly value="{{ device.cpu }}" required>
+                </div>
+                <div class="form-field row-2">
+                    <label for="deviceModel">الموديل</label>
+                    <input type="text" name="deviceModel" id="deviceModel" readonly value="{{ device.modal }}" required>
+                </div>
+                <div class="form-field row-2">
+                    <label for="RAM">الذاكرة العشوائية</label>
+                    <input type="text" name="RAM" id="RAM" readonly value="{{ device.RamDevice.type }}/{{ device.RamDevice.size }}" required>
+                </div>
+                <div class="form-field row-3">
+                    <label for="serialNumber">الرقم التسلسلي</label>
+                    <input type="text" name="serialNumber" id="serialNumber" readonly value="{{ device.serialnumber }}" required>
+                </div>
+                <div class="form-field row-3">
+                    <label for="GPU">كرت الشاشة</label>
+                    <input type="text" name="GPU" id="GPU" readonly value="{{ device.GPUDevice.type }}/{{ device.GPUDevice.size }}" required>
+                </div>
+                <div class="form-field row-2">
+                    <label for="receiveDate">تاريخ الاستلام</label>
+                    <input type="text" name="receiveDate" id="receiveDate" readonly value="{{ device.date }}" required>
+                </div>
+                <div class="form-field row-1">
+                    <label for="storage">التخزين</label>
+                    <input type="text" name="storage" id="storage" readonly value="{{ device.StorgeDevice.type }}/{{ device.StorgeDevice.size }}" required>
+                </div>
+                <div class="form-field row-3">
+                    <label for="rating">التقييم</label>
+                    <input type="text" name="rating" id="rating" readonly value="{{ device.rate }}" required>
+                </div>
+                <div class="form-field row-3">
+                    <label for="screenType"> الشاشة</label>
+                    <input type="text" name="screenType" id="screenType" readonly value="{{ device.screenType }}" required>
+                </div>
+    
+                <div class="form-field row-2">
+                    <label for="price">السعر</label>
+                    <input type="text" name="price" id="price" required>
+                </div>
+    
+
+    
+                <br>
+                <div class="">
+                    <a href="/index/details/{{device.id}}/{{device.Employe.name}}/maintaince" class="btn btn-sm bg-info"><i class="icon-redo2"></i> سجل صيانة الجهاز</a>
+                </div>
+                <hr width="50%" />
+            </div>
+          
+            {% endfor %}
+            <br>
+            <div class="card border-left-3 border-left-blue-400 rounded-left-0 mb-1">
+                <div class="card-footer d-flex justify-content-between align-items-center p-2">
+                    <div>
+                        <div class="btn-group">
+                            <a href="{% url 'index' %}" class="btn btn-sm bg-success"><i class="icon-redo2"></i> عودة</a>
+                        </div>
+
+                     
+                    
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    
+  
+
+</body>
+
+</html>
+{% endblock 'content' %}
+
+
+
+
+
