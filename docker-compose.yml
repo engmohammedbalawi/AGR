@@ -5,7 +5,7 @@ services:
     image: postgres
     volumes:
       #- ./data/db:/var/lib/postgresql/data
-      - ./lastdb.sql:/docker-entrypoint-initdb.d/lastdb.sql
+      - /var/lib/jenkins/workspace/device-employe/lastdb.sql:/docker-entrypoint-initdb.d/lastdb.sql
     environment:
       - POSTGRES_DB=newstyle
       - POSTGRES_USER=postgres
