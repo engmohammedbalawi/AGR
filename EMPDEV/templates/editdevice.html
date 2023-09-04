@@ -7,13 +7,13 @@
             <div class="modal-body">
                 <form method="POST" enctype="multipart/form-data" id="edit-forms">
                     {% csrf_token %}
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">أدخل موديل الجهاز :</label>
+                    <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">أدخل موديل الجهاز :</label>
                             <input type="text" id="modal" name="modal" class="form-control" required="" value="{{device.modal}}" />
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">حجم التخزين :</label>
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">حجم التخزين :</label>
                             <select name="storagedevice" id="storagedevice" class="form-control">
                                 {% for storage in storage %}
                                     <option value="{{ storage.id }}">{{ storage.size }} - {{ storage.type }}</option>
@@ -21,31 +21,36 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">كرت الشاشة:</label>
+                    <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">كرت الشاشة:</label>
                             <input type="text" id="gpu" name="gpu" class="form-control" value="{{device.gpu}}" />
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">الشاشة:</label>
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">الشاشة:</label>
                             <input type="text" id="screen" name="screen" class="form-control" value="{{device.screen}}" />
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">المعالج:</label>
+                    </div>
+
+                        <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">المعالج:</label>
                             <input type="text" id="cpu" name="cpu" class="form-control" value="{{device.cpu}}" />
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="typedevice" class="float-right">نوع الجهاز:</label>
-                        <select name="typedevice" id="typedevice" class="form-control">
+                    <div class="col-md-6 mb-3" dir="rtl">
+                        <label for="typedevice" class="float-right">نوع الجهاز:</label>
+                        <select name="typedevice" id="typedevice" class="form-control" required>
                             {% for types in types %}
                             <option value="{{ types.id }}">{{ types.name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                 </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">حجم الرام ونوعها:</label>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">حجم الرام ونوعها:</label>
                             <select name="ramdevice" id="ramdevice" class="form-control">
                                 {% for ram in ram %}
                                     <option value="{{ ram.id }}" {% if ram.id == device.ramdevice.id %}selected{% endif %}>{{ ram.size }} - {{ ram.type }}</option>
@@ -53,21 +58,23 @@
                             </select>
                         </div>
                     </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">سيريال الجهاز:</label>
+                    <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">سيريال الجهاز:</label>
                             <input type="text" id="serialnumber" name="serialnumber" class="form-control" required value="{{device.serialnumber}}" />
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">تاريخ الاستلام:</label>
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">تاريخ الاستلام:</label>
                             <input type="date" id="date" name="date" class="form-control" required value="{{device.date}}" />
                         </div>
                     </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">السعر:</label>
+                    <div class="row">
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">السعر:</label>
                             <input type="text" id="price" name="price" class="form-control" required value="{{device.price}}" />
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="float-right">التقييم:</label>
+                        <div class="col-md-6 mb-3" dir="rtl">
+                            <label dir="rtl" class="float-right">التقييم:</label>
                             <select name="rate" id="rate" class="form-control" required>
                                 <option value="1" {% if device.rate == 1 %}selected{% endif %}>1</option>
                                 <option value="2" {% if device.rate == 2 %}selected{% endif %}>2</option>
