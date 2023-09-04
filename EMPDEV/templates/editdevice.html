@@ -43,7 +43,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="form-row">
+                </div>
                         <div class="col-md-6 mb-3">
                             <label class="float-right">حجم الرام ونوعها:</label>
                             <select name="ramdevice" id="ramdevice" class="form-control">
@@ -53,7 +53,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label class="float-right">سيريال الجهاز:</label>
                             <input type="text" id="serialnumber" name="serialnumber" class="form-control" required value="{{device.serialnumber}}" />
@@ -63,7 +62,6 @@
                             <input type="date" id="date" name="date" class="form-control" required value="{{device.date}}" />
                         </div>
                     </div>
-                    <div class="form-row">
                         <div class="col-md-6 mb-3">
                             <label class="float-right">السعر:</label>
                             <input type="text" id="price" name="price" class="form-control" required value="{{device.price}}" />
