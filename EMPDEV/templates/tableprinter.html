@@ -1,0 +1,49 @@
+<table id="table1"  dir="rtl" class="table cell-border" style="margin: 0 auto; border:5px solid;text-align:center;border-radius: 10px; border-color: #96D4D4;">
+    <thead>
+        <tr>
+            <th>اسم الموظف</th>
+            <th>موديل</th>
+            <th>السيريال</th>
+            <th>تاريخ الاستلام</th>
+            <th>السعر</th>
+            <th>التقيم</th>
+            <th>العمليات</th>
+            
+          
+        </tr>
+    </thead>
+    <tbody>
+        {% for printer in printer %}
+        <tr>
+            <td>{{ printer.Employe.name }}</td>
+            <td>{{ printer.modal }}</td>
+            <td>{{ printer.serialnumber }}</td>
+            <td>{{ printer.date }}</td>
+            <td>{{ printer.price }}</td>
+            <td>{{ printer.rate }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{ all_device.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        العمليات
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ all_device.id }}">
+                        <a class="dropdown-item delete-btn" href="#" data-id="{{ printer.id }}">حذف</a>
+                    
+                    </div>
+                </div>
+            </td>
+            
+        </tr>
+        {% endfor %}
+
+
+    </tbody>
+</table>
+
+
+
+<script>
+$(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+});
+</script>

@@ -1,0 +1,446 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block 'style' %}
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        @media print {
+
+            .no-print,
+            .no-print * {
+                display: none !important;
+            }
+
+            .col-sm-1,
+            .col-sm-2,
+            .col-sm-3,
+            .col-sm-4,
+            .col-sm-5,
+            .col-sm-6,
+            .col-sm-7,
+            .col-sm-8,
+            .col-sm-9,
+            .col-sm-10,
+            .col-sm-11,
+            .col-sm-12 {
+                float: left;
+            }
+
+            .col-sm-12 {
+                width: 100%;
+            }
+
+            .col-sm-11 {
+                width: 91.66666667%;
+            }
+
+            .col-sm-10 {
+                width: 83.33333333%;
+            }
+
+            .col-sm-9 {
+                width: 75%;
+            }
+
+            .col-sm-8 {
+                width: 66.66666667%;
+            }
+
+            .col-sm-7 {
+                width: 58.33333333%;
+            }
+
+            .col-sm-6 {
+                width: 50%;
+            }
+
+            .col-sm-5 {
+                width: 41.66666667%;
+            }
+
+            .col-sm-4 {
+                width: 33.33333333%;
+            }
+
+            .col-sm-3 {
+                width: 25%;
+            }
+
+            .col-sm-2 {
+                width: 16.66666667%;
+            }
+
+            .col-sm-1 {
+                width: 8.33333333%;
+            }
+
+        }
+
+        body {
+            font-family: 'Cairo';
+            font-size: 19px;
+            background-color: #f2f2f2;
+            direction: rtl;
+            margin: 0;
+        }
+
+        .menu {
+            background-color: #ddd;
+            padding: 20px;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-top: 20px;
+        }
+
+        .menu li {
+            margin-bottom: 10px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu svg {
+            margin-right: 5px;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: flex;
+            align-items: ri;
+            margin-bottom: 9px;
+            /*التباعد بين السطور*/
+        }
+
+        .form-field label {
+            width: 200px;
+            /*حجم ايقونات الادخال*/
+            text-align: right;
+            margin-right: 10px;
+            /*الهامش اليمين*/
+        }
+
+        .form-field input[type="text"],
+        .form-field input[type="date"],
+        .form-control {
+            width: 100%;
+            box-sizing: content-box;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 19px;
+            color: #333;
+            line-height: 44px;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: right;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-field.right {
+            text-align: right;
+            margin-right: auto;
+            margin-left: 10px;
+        }
+
+        .form-field.left {
+            text-align: right;
+            margin-right: 10px;
+            margin-left: auto;
+        }
+
+
+
+        .form-field {
+            width: 45%;
+            /* Adjust the width as needed */
+        }
+
+        /* List Format */
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+        .form-field {
+            width: 45%;
+            /* Adjust the width as needed */
+        }
+
+        /* List Format */
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+
+
+        .signature-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+    </style>
+    {% endblock 'style' %}
+
+
+</head>
+
+<body>
+    {% block 'content' %}
+    <div class="container" style="margin-top: 20px;padding-top: 30px;">
+        <div class="row">
+            <div class="col-4 text-right">
+                <p>دولة فلسطين</p>
+                <p>وزارة الــــــــــــــــزراعة</p>
+                <p>وحدة الحاسوب و تكنولوجيا المعلومات</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'img/image002.png' %}" class="img-thumbnail" style="
+                display: block;
+                margin: 0 auto;
+                height: 70%;">
+
+            </div>
+            <div class="col-4 text-left">
+                <p>State of Palestine</p>
+                <p>Ministry OF Agriculture</p>
+                <p>Computer & Information Technology Unit</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">بيانات الموظف:</div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">اسم الموظف:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.name}}</label>
+                            </div>
+                            <label class="col-sm-2 col-form-label">الرقم الوظيفي:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.empnumber}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">رقم الهاتف:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.phone}}</label>
+                            </div>
+                            <label class="col-sm-2 col-form-label">الادارة العامة:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.PublicAd.name}}</label>
+                            </div>
+                        </div>
+        
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">مكان العمل:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.location}}</label>
+                            </div>
+                            <label class="col-sm-2 col-form-label">الدائرة:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.department}}</label>
+                            </div>
+                        </div>
+        
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">القسم:</label>
+                            <div class="col-sm-4">
+                                <label class="form-control" disabled>{{user.section}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <section class="row">
+            <div class="col-12" style="margin-top: 10px;">
+                
+            {% for device in device %}
+            <div class="card">
+                <div class="card-header">مواصفات الجهاز:</div>
+                <div class="card-body">
+
+                    <div class="form-section">
+                        <div class="form-field row-1">
+                            <label for="deviceType">النوع:</label>
+                            <input type="text" name="deviceType" id="deviceType" readonly
+                                value="{{ device.TypeDevice.name }}" required>
+                        </div>
+                        <div class="form-field row-1">
+                            <label for="cpu">المعالج:</label>
+                            <input type="text" name="cpu" id="cpu" readonly value="{{ device.cpu }}" required>
+                        </div>
+                        <div class="form-field row-2">
+                            <label for="deviceModel">الموديل:</label>
+                            <input type="text" name="deviceModel" id="deviceModel" readonly value="{{ device.modal }}"
+                                required>
+                        </div>
+                        <div class="form-field row-2">
+                            <label for="RAM">الذاكرة العشوائية:</label>
+                            <input type="text" name="RAM" id="RAM" readonly
+                                value="{{ device.RamDevice.type }}/{{ device.RamDevice.size }}" required>
+                        </div>
+                        <div class="form-field row-3">
+                            <label for="serialNumber">الرقم التسلسلي:</label>
+                            <input type="text" name="serialNumber" id="serialNumber" readonly
+                                value="{{ device.serialnumber }}" required>
+                        </div>
+                        <div class="form-field row-3">
+                            <label for="GPU">كرت الشاشة:</label>
+                            <input type="text" name="GPU" id="GPU" readonly
+                                value="{{ device.gpu }}" required>
+                        </div>
+                        <div class="form-field row-2">
+                            <label for="receiveDate">تاريخ الاستلام:</label>
+                            <input type="text" name="receiveDate" id="receiveDate" readonly value="{{ device.date }}"
+                                required>
+                        </div>
+                        <div class="form-field row-1">
+                            <label for="storage">التخزين:</label>
+                            <input type="text" name="storage" id="storage" readonly
+                                value="{{ device.StorgeDevice.type }}/{{ device.StorgeDevice.size }}" required>
+                        </div>
+                        <div class="form-field row-3">
+                            <label for="rating">التقييم:</label>
+                            <input type="text" name="rating" id="rating" readonly value="{{ device.rate }}" required>
+                        </div>
+                        <div class="form-field row-3">
+                            <label for="screenType"> الشاشة:</label>
+                            <input type="text" name="screenType" id="screenType" readonly
+                                value="{{ device.screen}}" required>
+                        </div>
+
+                        <div class="form-field row-2">
+                            <label for="price">السعر:</label>
+                            <input type="text" name="price" id="price" readonly value="{{device.price}}" required>
+                        </div>
+                        <br>
+                        <div class="col-md-4">
+                            <div class="form-field no-print">
+                                <a href="/index/details/{{device.id}}/{{device.Employe.name}}/maintaince"
+                                    class="btn btn-sm bg-info"><i class="icon-redo2"></i> سجل صيانة
+                                    الجهاز</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% endfor %}
+            </div>
+        </section>
+
+        <div class="row">
+            <div class="col-4" style="margin-top: 30px; margin-bottom: 40px;">
+              <div style="text-align: center;">توقيع الموظف</div>
+              <hr style="border-top: 1px dashed #000; margin-top: 40px;">
+            </div>
+            <div class="col-4" style="margin-top: 30px; margin-bottom: 40px;">
+              <div style="text-align: center;">توقيع مدير وحدة الحاسوب</div>
+              <hr style="border-top: 1px dashed #000; margin-top: 40px;">
+            </div>
+            <div class="col-4" style="margin-top: 30px; margin-bottom: 40px;">
+              <div style="text-align: center;">توقيع أمين المخازن</div>
+              <hr style="border-top: 1px dashed #000; margin-top: 40px;">
+            </div>
+          </div>
+          
+
+
+
+        
+        <div class="row">
+            <div class="col-md-12" style="margin: 10px 0; !important">
+                <div class="card">
+                    <div class="no-print  card-body">
+                        <button id="printButton" class="btn btn-md btn-primary"><i class="icon-printer"></i>
+                            طباعة</button>
+                        <button id="backButton" class="btn btn-md btn-secondary"><i class="icon-arrow-left"></i>
+                            رجوع</button>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-secondary">Secondary</button>
+                        <button type="button" class="btn btn-success">Success</button>
+                        <button type="button" class="btn btn-danger">Danger</button>
+                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-info">Info</button>
+                        <button type="button" class="btn btn-light">Light</button>
+                        <button type="button" class="btn btn-dark">Dark</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("printButton").addEventListener("click", function () {
+            window.print();
+        });
+    </script>
+    <script>
+        document.getElementById("backButton").addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
+
+</body>
+
+</html>
+{% endblock 'content' %}

@@ -1,0 +1,47 @@
+<table id="table"  dir="rtl" class="table cell-border" style="margin: 0 auto; border:5px solid;text-align:center;border-radius: 10px; border-color: #96D4D4;">
+    <thead>
+        <tr>
+            <th>اجراءات الصيانة</th>
+            <th>تكلفة الصيانة</th>
+            <th>تاريخ الاستلام</th>
+            <th> تاريخ التسليم</th>
+            <th>نوع العطل</th>
+            <th>سيريال الجهاز</th>
+            <th>العمليات</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Maintainace in Maintainace %}
+        <tr>
+            <td>{{ Maintainace.stpes }}</td>
+            <td>{{ Maintainace.cost }}</td>
+            <td>{{ Maintainace.datein }}</td>
+            <td>{{ Maintainace.dateout }}</td>
+            <td>{{ Maintainace.TypeBreak }}</td>
+            <td>{{ Maintainace.device }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton{{ all_device.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        العمليات
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton{{ all_device.id }}">
+                        <a class="dropdown-item delete-btn" href="#" data-id="{{ Maintainace.id }}">حذف</a>
+                    
+                    </div>
+                </div>
+            </td>
+            
+        </tr>
+        {% endfor %}
+
+
+    </tbody>
+</table>
+<p>اجمالي مبلغ الصيانة: <span id="total-cost">{{ total_cost }}</span></p>
+
+
+<script>
+$(document).ready(function() {
+    $('.dropdown-toggle').dropdown();
+});
+</script>

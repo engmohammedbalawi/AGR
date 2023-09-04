@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'welcome' %}
+<style>
+  /* Use the Cairo font for specific elements */
+  h2, h4, h5 {
+    font-family: 'Cairo', sans-serif;
+    font-size: 20px;
+  }
+
+  h1 {
+    font-family: 'Cairo', sans-serif;
+  }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-body {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .icon {
+    flex: 1;
+    text-align: center;
+    color: #007bff; /* لون الأيقونة */
+    font-size: 3rem;
+  }
+
+  .text {
+    flex: 2;
+    text-align: right;
+  }
+
+  .card-footer {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #dee2e6;
+  }
+
+  .card-footer a {
+    color: #007bff; /* لون الرابط */
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .card-footer a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+  <h1 class="text-center mb-4">مرحبًا بكم في نظام متابعة أجهزة الموظفين</h1>
+  <h2 style="text-align:center;" class="mb-4">
+    <img src="{% static 'img/agr.png' %}" alt="logo">
+  </h2>
+  <div class="container">
+    <div class="row">
+      <!-- Card 1 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-chart-pie"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_pa }}</h1>
+              <h4>عدد الإدارات العامة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="http://10.11.20.43:8000/indexpa/" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 1 -->
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_emp }}</h1>
+              <h4>عدد الموظفين</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="http://10.11.20.43:8000/indexemp/" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 2 -->
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_device }}</h1>
+              <h4>إجمالي عدد الأجهزة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 3 -->
+
+<div class="col-lg-4 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <div class="icon">
+        <i class="fas fa-laptop"></i>
+      </div>
+      <div class="text">
+        <h1>{{ laptop }}</h1>
+        <h4>عدد أجهزة اللاب توب</h4>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="#">معلومات إضافية</a>
+    </div>
+  </div>
+</div>
+      <!-- End Card 4 -->
+<div class="col-lg-4 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <div class="icon">
+        <i class="fas fa-desktop"></i>
+      </div>
+      <div class="text">
+        <h1>{{ desktop }}</h1>
+        <h4>عدد أجهزة الدسك توب</h4>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="#">معلومات إضافية</a>
+    </div>
+  </div>
+</div>
+      <!-- End Card 5 -->
+<div class="col-lg-4 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <div class="icon">
+        <i class="fas fa-tablet"></i>
+      </div>
+      <div class="text">
+        <h1>{{ tablet }}</h1>
+        <h4>عدد أجهزة التابلت</h4>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="#">معلومات إضافية</a>
+    </div>
+  </div>
+</div>
+      <!-- End Card 6 -->
+<div class="col-lg-4 col-md-6">
+  <div class="card">
+    <div class="card-body">
+      <div class="icon">
+        <i class="fas fa-print"></i>
+      </div>
+      <div class="text">
+        <h1>{{ printerr }}</h1>
+        <h4>عدد الطابعات</h4>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="http://10.11.20.43:8000/printer/">معلومات إضافية</a>
+    </div>
+  </div>
+</div>
+      <!-- End Card 7 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_rate5 }}</h1>
+              <h4>عدد الأجهزة الممتازة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 8 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_rate3 }}</h1>
+              <h4>عدد الأجهزة المتوسطة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 9 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_rate1 }}</h1>
+              <h4>عدد الأجهزة الضعيفة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 10 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_maintenance_actions }}</h1>
+              <h4>عدد إجراءات الصيانة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 11 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-wrench"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_maintained_devices }}</h1>
+              <h4>عدد الأجهزة التي تم صيانتها</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 12 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-cogs"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_damaged_devices }}</h1>
+              <h4>عدد الأجهزة المكهنة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+      <!-- End Card 13 -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <div class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="text">
+              <h1>{{ total_requested_devices }}</h1>
+              <h4>عدد الأجهزة المطلوبة</h4>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="https://www.linkedin.com/in/younes-elmorabit" target="_blank">معلومات إضافية</a>
+          </div>
+        </div>
+      </div>
+            <!-- End Card 13 -->
+    </div>
+  </div>
+</body>
+</html>
+
+
+    {% endblock 'welcome' %}
+
+    {% block 'js' %}
+    <script>
+      // Function to animate the counting effect
+      function animateCount(target, duration) {
+        $({ countNum: 0 }).animate(
+          {
+            countNum: target
+          },
+          {
+            duration: duration,
+            easing: 'linear',
+            step: function () {
+              // Update the displayed number during the animation
+              $('#count').text(Math.floor(this.countNum));
+            },
+            complete: function () {
+              // Set the final value after the animation is complete
+              $('#count').text(target);
+            }
+          }
+        );
+      }
+    
+      // Call the function when the page is ready
+      $(document).ready(function () {
+        var targetNumber = parseInt('{{ total_rate5 }}'); // Get the total_rate5 from Django context
+        var animationDuration = 6000; // Set the animation duration in milliseconds (e.g., 2000ms = 2 seconds)
+    
+        // Start the counting animation
+        animateCount(targetNumber, animationDuration);
+      });
+    </script>
+    {% endblock 'js' %}

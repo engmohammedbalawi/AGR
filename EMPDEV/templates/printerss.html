@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+{% block 'index1' %}
+
+
+<br>
+
+<div class="row">
+    <!-- Button trigger modal -->
+    <div class="text-center" style="margin-left: 0;">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            إضافة طابعة
+        </button>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="row">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-right" id="exampleModalLabel">إضافة طابعة</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" id="myform" data-parsley-validate="">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label for="employee" class="float-right">إسم الموظف:</label>
+                                <select name="employe" id="employe" class="employee-select form-control"
+                                    style="width: 100%;" data-tags="true" required>
+                                    {% for all_emp in all_emp %}
+                                    <option value="{{ all_emp.id }}">{{ all_emp.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-right">نوع الطابعة:</label>
+                                <select id="printertype" name="printertype" class="form-control" required>
+                                    <option value="ليزر">ليزر</option>
+                                    <option value="نفث حبر">نفث حبر</option>
+                                    <option value="حراري">حراري</option>
+                                    <!-- يمكنك إضافة المزيد من الخيارات هنا -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-right">موديل الطابعة:</label>
+                                <input type="text" id="printermodel" name="printermodel" class="form-control" required />
+                            </div>
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-right">سيريال الطابعة:</label>
+                                <input type="text" id="serialnumber" name="serialnumber" class="form-control"
+                                    required />
+                            </div>
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-right">تاريخ الاستلام:</label>
+                                <input type="date" id="date" name="date" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-right">السعر:</label>
+                                <input type="text" id="price" name="price" class="form-control" required />
+                            </div>
+                            <div class="col-md-6 mb-3" dir="rtl">
+                                <label dir="rtl" class="float-left">التقييم:</label>
+                                <select name="rate" id="rate" class="form-control" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5 Toop">5 Toop</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-primary" id="submitdevice">إضافة</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id='tablecont'>
+</div>
+
+<div id='edit'>
+</div>
+{% endblock %}
+
+{% block 'jsindex' %}
+<script type="text/javascript">
+
+
+    function fetch() {
+        $.ajax({
+            type: 'GET',
+            url: 'tableprinter/',
+            success: function (response) {
+                console.log(response);
+                $('#tablecont').html(response);
+                $('#table1').DataTable({
+     
+
+                });
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    fetch();
+
+
+    $(document).on('click', '.delete-btn', function (event) {
+
+        event.preventDefault();
+        var postId = $(this).data('id');
+        var csrfToken = "{{ csrf_token }}";
+
+        bootbox.confirm({
+            message: "هل تريد حذف العنصر؟",
+            buttons: {
+                confirm: {
+                    label: 'نعم',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: 'لا',
+                    className: 'btn-secondary'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: 'deletedevice/' + postId + '/',
+                        data: {
+                            csrfmiddlewaretoken: csrfToken
+                        },
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                        },
+                        success: function (response) {
+                            toastr.success('تمت الحذف بنجاح.');
+
+                            fetch()
+
+                        },
+                        error: function (xhr, errmsg, err) {
+                            console.log(xhr.status + ": " + xhr.responseText);
+                        }
+                    });
+                }
+            }
+        });
+    });
+</script>
+{% endblock 'jsindex' %}

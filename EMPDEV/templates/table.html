@@ -1,0 +1,83 @@
+{% load static %}
+
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .dropdown-toggle {
+        background-color: #6C757D;
+        color: white;
+        border: none;
+    }
+
+    .dropdown-menu {
+        min-width: auto;
+    }
+</style>
+<table dir="rtl" id="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>اسم الموظف</th>
+            <th>الادارة</th>
+            <th>تاريخ الاستلام</th>
+            <th>نوع الجهاز</th>
+            <th>التفاصيل</th>
+        </tr>
+    </thead>
+    <tbody>
+    </div>
+    
+        {% for device in all_device %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ device.Employe.name }}</td>
+            <td>{{ device.Employe.PublicAd.name }}</td>
+            <td>{{ device.date }}</td>
+            <td>{{ device.TypeDevice.name }}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        العمليات
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item delete-btn" href="#" data-id="{{ device.id }}">حذف</a>
+                        <a class="dropdown-item edit-btn" href="#" data-id="{{ device.id }}">تعديل</a>
+                        <a class="dropdown-item details-btn" href="details/{{ device.id }}/{{ device.Employe.name }}">التفاصيل</a>
+                        <a class="dropdown-item details-btn" href="maintaince/{{ device.id }}/{{ device.Employe.name }}">صيانة</a>
+                        <a class="dropdown-item disable-btn" href="#" data-id="{{ device.id }}">تكهين</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">لا توجد بيانات لعرضها</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
