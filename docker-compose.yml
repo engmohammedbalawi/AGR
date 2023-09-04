@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      #- ./data/db:/var/lib/postgresql/data
+      - ./lastdb.sql:/docker-entrypoint-initdb.d/lastdb.sql
+    environment:
+      - POSTGRES_DB=newstyle
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=toortoor
+
+  web1:
+    build: .
+    command: >
+          bash -c "sleep 10 && pip install django-import-export  && python manage.py createsuperuser && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_DB=newstyle
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=toortoor
+    depends_on:
+      - db
